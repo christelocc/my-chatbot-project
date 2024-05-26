@@ -4,6 +4,7 @@ import os
 
 app = Flask(__name__)
 
+# Set OpenAI API key from environment variable
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 conversation_context = []
@@ -27,6 +28,9 @@ def chat():
     response = generate_response(user_input)
     return jsonify({"response": response})
 
+@app.route("/")
+def index():
+    return "Hello, this is your chatbot application!"
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
-
